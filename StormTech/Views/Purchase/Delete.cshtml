@@ -1,0 +1,40 @@
+﻿@model StormTech.Models.Purchase_Table
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Purchase_Table</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Order_Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Order_Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Invoice_table.Type)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Invoice_table.Type)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Item_table.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Item_table.Description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

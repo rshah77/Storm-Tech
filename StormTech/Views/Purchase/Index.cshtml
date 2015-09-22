@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StormTech.Models.Purchase_Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_table.Supplier_table.Name)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Invoice_table.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice_table.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice_table.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice_table.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_table.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_table.Supplier_table.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_table.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_table.Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Number)
+        </td>
+        <td>
+            @item.Invoice_table.Date.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            £@Html.DisplayFor(modelItem => item.Invoice_table.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_table.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Order_Number}, new {@class = "greenButtonRound"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.Order_Number}, new {@class = "blueButtonRound"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Order_Number }, new {@class = "redButtonRound"})
+        </td>
+    </tr>
+}
+
+</table>

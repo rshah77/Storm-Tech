@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "ST Sample Order Processing";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+            </p>
+        </div>
+    </section>
+}
+<h3>Choose an action from below:</h3>
+<ol class="round">
+    <li>@Html.ActionLink("Manage Suppliers", "Index", "Supplier")</li>
+    <li>@Html.ActionLink("Manage Items", "Index", "Item")</li>
+    <li>@Html.ActionLink("Manage Invoices", "Index", "Invoice")</li>
+    <li>@Html.ActionLink("Manage Purchases", "Index", "Purchase")</li>
+</ol>

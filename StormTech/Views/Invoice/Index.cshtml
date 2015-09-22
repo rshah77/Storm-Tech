@@ -1,0 +1,58 @@
+﻿@model IEnumerable<StormTech.Models.Invoice_table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Invoices</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase_table.Item_table.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @item.Date.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            £@Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            £@Html.DisplayFor(modelItem => item.Purchase_table.Item_table.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Number}, new {@class = "greenButtonRound"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.Number }, new {@class = "blueButtonRound"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Number }, new {@class = "redButtonRound"})
+        </td>
+    </tr>
+}
+
+</table>

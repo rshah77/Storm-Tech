@@ -1,0 +1,40 @@
+﻿@model IEnumerable<StormTech.Models.Item_table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Supplier @Html.DisplayNameFor(model => model.Supplier_table.Name)
+            </th>
+            <th>
+                Item @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier_table.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new {@class = "greenButtonRound"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class = "blueButtonRound"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new {@class = "redButtonRound"})
+        </td>
+    </tr>
+}
+
+</table>

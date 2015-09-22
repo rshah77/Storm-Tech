@@ -1,0 +1,52 @@
+﻿@model StormTech.Models.Purchase_Table
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Purchase_Table</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Order_Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order_Number)
+            @Html.ValidationMessageFor(model => model.Order_Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Invoice_ID, "Invoice_table")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Invoice_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.Invoice_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Item_ID, "Item_table")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Item_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.Item_ID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

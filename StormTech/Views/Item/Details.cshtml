@@ -1,0 +1,29 @@
+﻿@model StormTech.Models.Item_table
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Item_table</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Supplier_table.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Supplier_table.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

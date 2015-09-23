@@ -4,40 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Invoice Details</h2>
 <fieldset>
     <legend>Invoice_table</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Number)
+    <br>
+    <div>
+         <span class="lable">@Html.DisplayNameFor(model => model.Number)</span> : @Html.DisplayFor(model => model.Number)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Number)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Type)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Type)
+    <div>
+         <span class="lable">@Html.DisplayNameFor(model => model.Purchase_Table.Order_Number)</span> : @Html.DisplayFor(model => model.Purchase_Table.Order_Number)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Date)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Date)
+    <div>
+         <span class="lable">@Html.DisplayNameFor(model => model.Type)</span> : @Html.DisplayFor(model => model.Type)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Total)
+    <div>
+         <span class="lable">@Html.DisplayNameFor(model => model.Date)</span> : @Html.DisplayFor(model => model.Date)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Total)
+
+    <div>
+         <span class="lable">@Html.DisplayNameFor(model => model.Total)</span> : @Html.DisplayFor(model => model.Total)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Number }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

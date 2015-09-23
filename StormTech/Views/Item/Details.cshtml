@@ -4,23 +4,17 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Item Details</h2>
 
 <fieldset>
     <legend>Item_table</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Supplier_table.Name)
+    <br>
+    <div>
+        <span class="lable">Supplier @Html.DisplayNameFor(model => model.Supplier_table.Name)</span> : @Html.DisplayFor(model => model.Supplier_table.Name)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Supplier_table.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+    <br>
+    <div>
+         <span class="lable">Item @Html.DisplayNameFor(model => model.Description)</span> : @Html.DisplayFor(model => model.Description)
     </div>
 </fieldset>
 <p>

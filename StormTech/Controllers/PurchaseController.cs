@@ -11,14 +11,14 @@ namespace StormTech.Controllers
 {
     public class PurchaseController : Controller
     {
-        private STdatabaseEntities1 db = new STdatabaseEntities1();
+        private STdatabaseEntities db = new STdatabaseEntities();
 
         //
         // GET: /Purchase/
 
         public ActionResult Index()
         {
-            var purchase_table = db.Purchase_Table.Include(p => p.Invoice_table).Include(p => p.Item_table);
+            var purchase_table = db.Purchase_Table.Include(p => p.Item_table);
             return View(purchase_table.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace StormTech.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Invoice_ID = new SelectList(db.Invoice_table, "Number", "Number");
             ViewBag.Item_ID = new SelectList(db.Item_table, "ID", "Description");
             return View();
         }
@@ -59,7 +58,6 @@ namespace StormTech.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Invoice_ID = new SelectList(db.Invoice_table, "Number", "Number", purchase_table.Invoice_ID);
             ViewBag.Item_ID = new SelectList(db.Item_table, "ID", "Description", purchase_table.Item_ID);
             return View(purchase_table);
         }
@@ -74,7 +72,6 @@ namespace StormTech.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Invoice_ID = new SelectList(db.Invoice_table, "Number", "Number", purchase_table.Invoice_ID);
             ViewBag.Item_ID = new SelectList(db.Item_table, "ID", "Description", purchase_table.Item_ID);
             return View(purchase_table);
         }
@@ -92,7 +89,6 @@ namespace StormTech.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Invoice_ID = new SelectList(db.Invoice_table, "Number", "Number", purchase_table.Invoice_ID);
             ViewBag.Item_ID = new SelectList(db.Item_table, "ID", "Description", purchase_table.Item_ID);
             return View(purchase_table);
         }

@@ -13,10 +13,10 @@ namespace StormTech.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class STdatabaseEntities1 : DbContext
+    public partial class STdatabaseEntities : DbContext
     {
-        public STdatabaseEntities1()
-            : base("name=STdatabaseEntities1")
+        public STdatabaseEntities()
+            : base("name=STdatabaseEntities")
         {
         }
     

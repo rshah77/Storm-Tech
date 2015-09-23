@@ -11,7 +11,7 @@ namespace StormTech.Controllers
 {
     public class ItemController : Controller
     {
-        private STdatabaseEntities1 db = new STdatabaseEntities1();
+        private STdatabaseEntities db = new STdatabaseEntities();
 
         //
         // GET: /Item/

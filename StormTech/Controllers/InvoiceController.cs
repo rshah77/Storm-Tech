@@ -11,14 +11,15 @@ namespace StormTech.Controllers
 {
     public class InvoiceController : Controller
     {
-        private STdatabaseEntities1 db = new STdatabaseEntities1();
+        private STdatabaseEntities db = new STdatabaseEntities();
 
         //
         // GET: /Invoice/
 
         public ActionResult Index()
         {
-            return View(db.Invoice_table.ToList());
+            var invoice_table = db.Invoice_table.Include(i => i.Purchase_Table);
+            return View(invoice_table.ToList());
         }
 
         //
@@ -39,6 +40,7 @@ namespace StormTech.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Purchase_Order_Number = new SelectList(db.Purchase_Table, "Order_Number", "Order_Number");
             return View();
         }
 
@@ -56,6 +58,7 @@ namespace StormTech.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Purchase_Order_Number = new SelectList(db.Purchase_Table, "Order_Number", "Order_Number", invoice_table.Purchase_Order_Number);
             return View(invoice_table);
         }
 
@@ -69,6 +72,7 @@ namespace StormTech.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Purchase_Order_Number = new SelectList(db.Purchase_Table, "Order_Number", "Order_Number", invoice_table.Purchase_Order_Number);
             return View(invoice_table);
         }
 
@@ -85,6 +89,7 @@ namespace StormTech.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Purchase_Order_Number = new SelectList(db.Purchase_Table, "Order_Number", "Order_Number", invoice_table.Purchase_Order_Number);
             return View(invoice_table);
         }
 

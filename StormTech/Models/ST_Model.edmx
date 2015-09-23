@@ -10,15 +10,15 @@
           <EntitySet Name="Item_table" EntityType="STdatabaseModel.Store.Item_table" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Purchase_Table" EntityType="STdatabaseModel.Store.Purchase_Table" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Supplier_table" EntityType="STdatabaseModel.Store.Supplier_table" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Invoice_t__Purch__72C60C4A" Association="STdatabaseModel.Store.FK__Invoice_t__Purch__72C60C4A">
+            <End Role="Purchase_Table" EntitySet="Purchase_Table" />
+            <End Role="Invoice_table" EntitySet="Invoice_table" />
+          </AssociationSet>
           <AssociationSet Name="FK__Item_tabl__Suppl__36B12243" Association="STdatabaseModel.Store.FK__Item_tabl__Suppl__36B12243">
             <End Role="Supplier_table" EntitySet="Supplier_table" />
             <End Role="Item_table" EntitySet="Item_table" />
           </AssociationSet>
-          <AssociationSet Name="FK__Purchase___Invoi__49C3F6B7" Association="STdatabaseModel.Store.FK__Purchase___Invoi__49C3F6B7">
-            <End Role="Invoice_table" EntitySet="Invoice_table" />
-            <End Role="Purchase_Table" EntitySet="Purchase_Table" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Purchase___Item___4AB81AF0" Association="STdatabaseModel.Store.FK__Purchase___Item___4AB81AF0">
+          <AssociationSet Name="FK__Purchase___Item___6FE99F9F" Association="STdatabaseModel.Store.FK__Purchase___Item___6FE99F9F">
             <End Role="Item_table" EntitySet="Item_table" />
             <End Role="Purchase_Table" EntitySet="Purchase_Table" />
           </AssociationSet>
@@ -28,6 +28,7 @@
             <PropertyRef Name="Number" />
           </Key>
           <Property Name="Number" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="Purchase_Order_Number" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="5" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Total" Type="float" Nullable="false" />
@@ -45,7 +46,6 @@
             <PropertyRef Name="Order_Number" />
           </Key>
           <Property Name="Order_Number" Type="int" Nullable="false" />
-          <Property Name="Invoice_ID" Type="nvarchar" Nullable="false" MaxLength="7" />
           <Property Name="Item_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Supplier_table">
@@ -55,6 +55,18 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__Invoice_t__Purch__72C60C4A">
+          <End Role="Purchase_Table" Type="STdatabaseModel.Store.Purchase_Table" Multiplicity="1" />
+          <End Role="Invoice_table" Type="STdatabaseModel.Store.Invoice_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase_Table">
+              <PropertyRef Name="Order_Number" />
+            </Principal>
+            <Dependent Role="Invoice_table">
+              <PropertyRef Name="Purchase_Order_Number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Item_tabl__Suppl__36B12243">
           <End Role="Supplier_table" Type="STdatabaseModel.Store.Supplier_table" Multiplicity="1" />
           <End Role="Item_table" Type="STdatabaseModel.Store.Item_table" Multiplicity="*" />
@@ -67,19 +79,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Purchase___Invoi__49C3F6B7">
-          <End Role="Invoice_table" Type="STdatabaseModel.Store.Invoice_table" Multiplicity="1" />
-          <End Role="Purchase_Table" Type="STdatabaseModel.Store.Purchase_Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Invoice_table">
-              <PropertyRef Name="Number" />
-            </Principal>
-            <Dependent Role="Purchase_Table">
-              <PropertyRef Name="Invoice_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Purchase___Item___4AB81AF0">
+        <Association Name="FK__Purchase___Item___6FE99F9F">
           <End Role="Item_table" Type="STdatabaseModel.Store.Item_table" Multiplicity="1" />
           <End Role="Purchase_Table" Type="STdatabaseModel.Store.Purchase_Table" Multiplicity="*" />
           <ReferentialConstraint>
@@ -96,20 +96,20 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="STdatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="STdatabaseEntities1" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="STdatabaseEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Invoice_table" EntityType="STdatabaseModel.Invoice_table" />
           <EntitySet Name="Item_table" EntityType="STdatabaseModel.Item_table" />
           <EntitySet Name="Purchase_Table" EntityType="STdatabaseModel.Purchase_Table" />
           <EntitySet Name="Supplier_table" EntityType="STdatabaseModel.Supplier_table" />
-          <AssociationSet Name="FK__Purchase___Invoi__49C3F6B7" Association="STdatabaseModel.FK__Purchase___Invoi__49C3F6B7">
-            <End Role="Invoice_table" EntitySet="Invoice_table" />
+          <AssociationSet Name="FK__Invoice_t__Purch__72C60C4A" Association="STdatabaseModel.FK__Invoice_t__Purch__72C60C4A">
             <End Role="Purchase_Table" EntitySet="Purchase_Table" />
+            <End Role="Invoice_table" EntitySet="Invoice_table" />
           </AssociationSet>
           <AssociationSet Name="FK__Item_tabl__Suppl__36B12243" Association="STdatabaseModel.FK__Item_tabl__Suppl__36B12243">
             <End Role="Supplier_table" EntitySet="Supplier_table" />
             <End Role="Item_table" EntitySet="Item_table" />
           </AssociationSet>
-          <AssociationSet Name="FK__Purchase___Item___4AB81AF0" Association="STdatabaseModel.FK__Purchase___Item___4AB81AF0">
+          <AssociationSet Name="FK__Purchase___Item___6FE99F9F" Association="STdatabaseModel.FK__Purchase___Item___6FE99F9F">
             <End Role="Item_table" EntitySet="Item_table" />
             <End Role="Purchase_Table" EntitySet="Purchase_Table" />
           </AssociationSet>
@@ -119,10 +119,11 @@
             <PropertyRef Name="Number" />
           </Key>
           <Property Name="Number" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Purchase_Order_Number" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Total" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Purchase_Table" Relationship="STdatabaseModel.FK__Purchase___Invoi__49C3F6B7" FromRole="Invoice_table" ToRole="Purchase_Table" />
+          <NavigationProperty Name="Purchase_Table" Relationship="STdatabaseModel.FK__Invoice_t__Purch__72C60C4A" FromRole="Invoice_table" ToRole="Purchase_Table" />
         </EntityType>
         <EntityType Name="Item_table">
           <Key>
@@ -132,17 +133,16 @@
           <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Supplier_table" Relationship="STdatabaseModel.FK__Item_tabl__Suppl__36B12243" FromRole="Item_table" ToRole="Supplier_table" />
-          <NavigationProperty Name="Purchase_Table" Relationship="STdatabaseModel.FK__Purchase___Item___4AB81AF0" FromRole="Item_table" ToRole="Purchase_Table" />
+          <NavigationProperty Name="Purchase_Table" Relationship="STdatabaseModel.FK__Purchase___Item___6FE99F9F" FromRole="Item_table" ToRole="Purchase_Table" />
         </EntityType>
         <EntityType Name="Purchase_Table">
           <Key>
             <PropertyRef Name="Order_Number" />
           </Key>
           <Property Name="Order_Number" Type="Int32" Nullable="false" />
-          <Property Name="Invoice_ID" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
           <Property Name="Item_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Invoice_table" Relationship="STdatabaseModel.FK__Purchase___Invoi__49C3F6B7" FromRole="Purchase_Table" ToRole="Invoice_table" />
-          <NavigationProperty Name="Item_table" Relationship="STdatabaseModel.FK__Purchase___Item___4AB81AF0" FromRole="Purchase_Table" ToRole="Item_table" />
+          <NavigationProperty Name="Invoice_table" Relationship="STdatabaseModel.FK__Invoice_t__Purch__72C60C4A" FromRole="Purchase_Table" ToRole="Invoice_table" />
+          <NavigationProperty Name="Item_table" Relationship="STdatabaseModel.FK__Purchase___Item___6FE99F9F" FromRole="Purchase_Table" ToRole="Item_table" />
         </EntityType>
         <EntityType Name="Supplier_table">
           <Key>
@@ -152,15 +152,15 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Item_table" Relationship="STdatabaseModel.FK__Item_tabl__Suppl__36B12243" FromRole="Supplier_table" ToRole="Item_table" />
         </EntityType>
-        <Association Name="FK__Purchase___Invoi__49C3F6B7">
-          <End Role="Invoice_table" Type="STdatabaseModel.Invoice_table" Multiplicity="1" />
-          <End Role="Purchase_Table" Type="STdatabaseModel.Purchase_Table" Multiplicity="*" />
+        <Association Name="FK__Invoice_t__Purch__72C60C4A">
+          <End Role="Purchase_Table" Type="STdatabaseModel.Purchase_Table" Multiplicity="1" />
+          <End Role="Invoice_table" Type="STdatabaseModel.Invoice_table" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Invoice_table">
-              <PropertyRef Name="Number" />
+            <Principal Role="Purchase_Table">
+              <PropertyRef Name="Order_Number" />
             </Principal>
-            <Dependent Role="Purchase_Table">
-              <PropertyRef Name="Invoice_ID" />
+            <Dependent Role="Invoice_table">
+              <PropertyRef Name="Purchase_Order_Number" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -176,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Purchase___Item___4AB81AF0">
+        <Association Name="FK__Purchase___Item___6FE99F9F">
           <End Role="Item_table" Type="STdatabaseModel.Item_table" Multiplicity="1" />
           <End Role="Purchase_Table" Type="STdatabaseModel.Purchase_Table" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,11 +193,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="STdatabaseModelStoreContainer" CdmEntityContainer="STdatabaseEntities1">
+        <EntityContainerMapping StorageEntityContainer="STdatabaseModelStoreContainer" CdmEntityContainer="STdatabaseEntities">
           <EntitySetMapping Name="Invoice_table">
             <EntityTypeMapping TypeName="STdatabaseModel.Invoice_table">
               <MappingFragment StoreEntitySet="Invoice_table">
                 <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Purchase_Order_Number" ColumnName="Purchase_Order_Number" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
@@ -217,7 +218,6 @@
             <EntityTypeMapping TypeName="STdatabaseModel.Purchase_Table">
               <MappingFragment StoreEntitySet="Purchase_Table">
                 <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
-                <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
                 <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Manage Items</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Item", "Create", new { /**/}, new { @class = "greenButtonRound" })
 </p>
 <table class="pure-table pure-table-bordered">
     <thead>
@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new {@class = "greenButtonRound"}) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class = "blueButtonRound"}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new {@class = "redButtonRound"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "yellowButtonRound" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "blueButtonRound" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "redButtonRound" })
         </td>
     </tr>
 }

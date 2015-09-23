@@ -9,11 +9,8 @@
 <fieldset>
     <legend>Supplier_table</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+    <div>
+         <span class="lable">Supplier @Html.DisplayNameFor(model => model.Name)</span> : @Html.DisplayFor(model => model.Name)
     </div>
 </fieldset>
 <p>

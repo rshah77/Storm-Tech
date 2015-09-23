@@ -9,28 +9,15 @@
 <fieldset>
     <legend>Purchase_Table</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Order_Number)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Order_Number)
+    <div>
+         <span class="lable">Purchase @Html.DisplayNameFor(model => model.Order_Number)</span> : @Html.DisplayFor(model => model.Order_Number)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Invoice_table.Type)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Invoice_table.Type)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Item_table.Description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Item_table.Description)
+    <div>
+         <span class="lable">Item @Html.DisplayNameFor(model => model.Item_table.Description)</span> : @Html.DisplayFor(model => model.Item_table.Description)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Order_Number }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

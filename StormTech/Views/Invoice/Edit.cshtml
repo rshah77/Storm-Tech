@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Invoice</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -19,6 +19,14 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Number)
             @Html.ValidationMessageFor(model => model.Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Purchase_Order_Number, "Purchase_Table")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Purchase_Order_Number", String.Empty)
+            @Html.ValidationMessageFor(model => model.Purchase_Order_Number)
         </div>
 
         <div class="editor-label">

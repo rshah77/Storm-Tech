@@ -14,11 +14,15 @@ namespace StormTech.Models
     
     public partial class Purchase_Table
     {
+        public Purchase_Table()
+        {
+            this.Invoice_table = new HashSet<Invoice_table>();
+        }
+    
         public int Order_Number { get; set; }
-        public string Invoice_ID { get; set; }
         public int Item_ID { get; set; }
     
-        public virtual Invoice_table Invoice_table { get; set; }
+        public virtual ICollection<Invoice_table> Invoice_table { get; set; }
         public virtual Item_table Item_table { get; set; }
     }
 }

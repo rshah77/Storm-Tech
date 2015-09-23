@@ -105,6 +105,22 @@ a.greenButtonRound:hover {
     background-color: #00cc00;
 }
 
+a.yellowButtonRound {
+    border: 2px solid #EEAD0E;
+    border-radius: 5px;
+    background-color: #EEAD0E;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 0px;
+    padding: 4px 10px 4px 10px;
+    display: inline-block;
+}
+a.yellowButtonRound:hover {
+    border: 2px solid #FFCC11;
+    background-color: #FFCC11;
+}
+
 a.blueButtonRound {
     border: 2px solid #00BFFF;
     border-radius: 5px;
@@ -282,6 +298,11 @@ ul#menu {
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
+}
+
+.lable {
+    font-size:16px;
+    font-weight: bold;
 }
 
 hgroup.title h1, hgroup.title h2 {
@@ -804,3 +825,5 @@ tr.pager td {
 
 
 }
+
+
